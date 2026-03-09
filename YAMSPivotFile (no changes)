@@ -42,30 +42,15 @@ import yams.motorcontrollers.SmartMotorController;
 import yams.motorcontrollers.SmartMotorControllerConfig;
 import yams.motorcontrollers.simulation.DCMotorSimSupplier;
 
-/**
- * Pivot mechanism.
- */
+
 public class Pivot extends SmartPositionalMechanism
 {
 
-  /**
-   * Pivot config.
-   */
-  private final PivotConfig          m_config;
-  /**
-   * Simulation for the Pivot.
-   */
-  private       Optional<DCMotorSim> m_dcmotorSim = Optional.empty();
-  /**
-   * Mechanism ligament for the setpoint.
-   */
+  private final PivotConfig m_config;
+
+  private Optional<DCMotorSim> m_dcmotorSim = Optional.empty();
   private MechanismLigament2d m_setpointLigament = null;
 
-  /**
-   * Construct the Pivot class
-   *
-   * @param config Pivot configuration.
-   */
   public Pivot(PivotConfig config)
   {
     m_config = config;
@@ -74,7 +59,6 @@ public class Pivot extends SmartPositionalMechanism
     DCMotor                    dcMotor     = m_smc.getDCMotor();
     MechanismGearing           gearing     = m_smc.getConfig().getGearing();
     m_subsystem = m_smc.getConfig().getSubsystem();
-    // Seed the relative encoder
     if (m_smc.getConfig().getExternalEncoder().isPresent())
     {
       m_smc.seedRelativeEncoder();
